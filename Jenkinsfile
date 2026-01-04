@@ -5,10 +5,9 @@ pipeline {
             steps {
                 sh "rm -rf *"
                 sh "git clone https://github.com/priya027v/hello-world-war"
-                
             }
         }
-           stage('checkout') {
+           stage('Build') {
             steps {
                 sh '''
                 ls
