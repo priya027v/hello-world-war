@@ -3,13 +3,18 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                sh "rm -rf *"
-                sh "git clone https://github.com/priya027v/hello-world-war"
+                sh 'rm -rf *'
+                sh 'git clone https://github.com/priya027v/hello-world-war'
             }
         }
           stage('Build') {
             steps {
-                sh "mvn clean package"
+                sh '''
+                ls
+                pwd
+                cd hello-world-war
+                mvn clean package
+            '''
             }
         }
     }
