@@ -15,7 +15,7 @@ pipeline {
                    ls
                    pwd
                    cd hello-world-war
-                   PWD
+                   pwd
                    ls
                    mvn clean package
                 '''
