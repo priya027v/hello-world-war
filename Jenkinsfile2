@@ -6,5 +6,12 @@ pipeline {
                 sh 'git clone https://github.com/priya027v/hello-world-war'
             }
         }
+           stage('Build') {
+            steps {
+                dir('hello-world-war') {
+                    sh 'mvn clean package'
+                }
+            }
+        }
     }
 }
