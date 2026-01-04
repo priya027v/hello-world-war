@@ -5,6 +5,19 @@ pipeline {
             steps {
                 sh "rm -rf *"
                 sh "git clone https://github.com/priya027v/hello-world-war"
+                
+            }
+        }
+           stage('checkout') {
+            steps {
+                sh '''
+                ls
+                pwd
+                cd hello-world-war
+                pwd
+                ls
+                mvn clean package
+            ''' 
             }
         }
     }
