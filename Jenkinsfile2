@@ -8,9 +8,7 @@ pipeline {
         }
            stage('Build') {
             steps {
-                dir('hello-world-war') {
                     sh 'mvn clean package'
-                }
             }
         }
     }
