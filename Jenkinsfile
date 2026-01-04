@@ -1,19 +1,20 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                sh 'rm -rf *'
-               sh 'https://github.com/priya027v/hello-world-war'
+                // Jenkins already checks out repo automatically
+                echo 'SCM checkout done'
             }
         }
+
         stage('Build') {
             steps {
-                    sh '''
-                    pwd
-                    ls
-                    cd hello-world-war
-                    mvn clean package
+                sh '''
+                pwd
+                ls
+                mvn clean package
                 '''
             }
         }
