@@ -20,5 +20,22 @@ pipeline {
                 '''
             }
         }
+           stage('Deploy') {
+            steps {
+                  sh '''
+                    echo "Deploying WAR to Tomcat"
+
+                    # Copy WAR file to Tomcat webapps
+                    sudo cp hello-world-war/target/*.war /opt/apache-tomcat-9.0.113/webapps/
+
+                    # Restart Tomcat
+                    sudo /opt/apache-tomcat-9.0.113/bin/shutdown.sh || true
+                    sleep 5
+                    sudo /opt/apache-tomcat-9.0.113/bin/startup.sh
+
+                    echo "Deployment completed"
+                '''
+            }
+        }
     }
 }
