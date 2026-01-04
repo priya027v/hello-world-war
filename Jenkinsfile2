@@ -9,7 +9,14 @@ pipeline {
         }
            stage('Build') {
             steps {
-                    sh 'mvn clean package'
+                   sh '''
+                    ls
+                    pwd
+                    cd hello-world-war
+                    PWD
+                    ls
+                    mvn clean package
+                '''
             }
         }
     }
