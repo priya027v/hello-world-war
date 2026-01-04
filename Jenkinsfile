@@ -7,7 +7,7 @@ pipeline {
                 sh 'git clone https://github.com/priya027v/hello-world-war'
             }
         }
-        stage('build') {
+        stage('Build') {
             steps {
                 sh '''
                 pwd
@@ -17,7 +17,8 @@ pipeline {
                 ls
                 mvn clean package
              '''
+            }
+        }
     }
 }
-    }
-}
+
