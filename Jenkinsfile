@@ -1,22 +1,20 @@
 pipeline {
     agent any
+
     stages {
-        stage('checkout') {
+        stage('Checkout') {
             steps {
-                sh 'rm -rf *'
-                sh 'git clone https://github.com/priya027v/hello-world-war'
+                deleteDir()   // cleans workspace safely
+                git 'https://github.com/priya027v/hello-world-war.git'
             }
         }
-          stage('Build') {
+
+        stage('Build') {
             steps {
-                sh '''
-                ls
-                pwd
-                cd hello-world-war
-                mvn clean package
-            '''
+                dir('hello-world-war') {
+                    sh 'mvn clean package'
+                }
             }
         }
     }
 }
-
