@@ -1,0 +1,12 @@
+pipeline {
+    agent any { lable 'slave1' }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Jenkins already checks out repo automatically
+                echo 'SCM checkout done'
+            }
+        }
+    }
+}
