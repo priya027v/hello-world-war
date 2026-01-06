@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any { label 'slave1' }
 
     stages {
         stage('Checkout') {
@@ -9,14 +9,5 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh '''
-                pwd
-                ls
-                mvn clean package
-                '''
-            }
-        }
     }
 }
