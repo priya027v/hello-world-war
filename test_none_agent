@@ -1,0 +1,13 @@
+pipeline {
+    agent none
+    stages {
+        stage('Test Slave2') {
+            agent { label 'slave2' }
+            steps {
+                sh 'hostname'
+                sh 'whoami'
+                sh 'java -version'
+            }
+        }
+    }
+}
