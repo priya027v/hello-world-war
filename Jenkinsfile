@@ -1,31 +1,96 @@
 pipeline {
-    agent any
-
+    agent { label 'slave1' }
     parameters {
-        string(name: 'CMD', defaultValue: 'cd', description: 'Command used to run or build application')
+        string(name: 'env', defaultValue: 'dev', description: 'Target Environment')
         booleanParam(name: 'RUN_TESTS', defaultValue: false, description: 'Run tests?')
-        choice(name: 'CMD1', choices: ['Clean', 'validate', 'compile'], description: 'test package deploy')
+        choice(name: 'MVN',choices: ['clean', 'validate', 'compile', 'verify', 'deploy'],description: 'Maven goals')
     }
-
     stages {
-        stage('Checkout') {
-            steps {
-                withCredentials([
-                    usernamePassword(
-                        credentialsId: 'c7bd912f-283a-42e1-87eb-9af2c4260087',
-                        usernameVariable: 'USERNAME',
-                        passwordVariable: 'PASSWORD'
-                    )
-                ]) 
-    {
- 	    sh 'echo welcom'
-	    sh 'echo $CMD $RUN_TESTS $$CMD1'
-	    sh 'echo $USERNAME $PASSWORD'
-	    }
-	 }
+        stage('Parallel stage') {
+            parallel {
+                stage('Checkout step1') {
+                    steps {
+                        git 'https://github.com/priya027v/hello-world-war.git'
+                        sh 'echo "Checkout completed step1"'
+                    }
+                }
+                stage('Environment Info step2') {
+                    steps {
+                        sh '''
+							sh 'echo welcom'
+					 		sh 'echo $evn $RUN_TESTS $MVN'
+                        '''
+                    }
+                }
+            }
+        }
     }
-   }
-  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// pipeline {
+//     agent any
+
+//     parameters {
+//         string(name: 'CMD', defaultValue: 'cd', description: 'Command used to run or build application')
+//         booleanParam(name: 'RUN_TESTS', defaultValue: false, description: 'Run tests?')
+//         choice(name: 'CMD1', choices: ['Clean', 'validate', 'compile'], description: 'test package deploy')
+//     }
+
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 withCredentials([
+//                     usernamePassword(
+//                         credentialsId: 'c7bd912f-283a-42e1-87eb-9af2c4260087',
+//                         usernameVariable: 'USERNAME',
+//                         passwordVariable: 'PASSWORD'
+//                     )
+//                 ]) 
+//     {
+//  	sh 'echo welcom'
+// 	    sh 'echo $CMD $RUN_TESTS $$CMD1'
+// 	    sh 'echo $USERNAME $PASSWORD'
+// 	    }
+// 	 }
+//     }
+//    }
+//   }
 
 // pipeline {
 //     agent any
