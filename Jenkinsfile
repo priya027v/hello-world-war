@@ -12,9 +12,7 @@ pipeline {
             steps {
                 sh '''
                     echo "welcome"
-                    echo "CMD=${CMD}"
-                    echo "RUN_TESTS=${RUN_TESTS}"
-                    echo "CMD1=${CMD1}"
+                    echo "$CMD $RUN_TESTS $CMD1"
                 '''
             }
         }
