@@ -2,7 +2,7 @@ pipeline {
     agent { label 'slave1' }
     parameters {
         string(name: 'env', defaultValue: 'dev', description: 'Target Environment')
-        booleanParam(name: 'RUN_TESTS', defaultValue: 'true', description: 'Run tests?')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
         choice(name: 'MVN',choices: ['clean', 'validate', 'compile', 'verify', 'deploy'],description: 'Maven goals')
     }
 stage('Checkout step1') {
