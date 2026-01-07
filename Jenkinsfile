@@ -1,23 +1,31 @@
 pipeline {
     agent { label 'slave1' }
+
     parameters {
         string(name: 'env', defaultValue: 'dev', description: 'Target Environment')
         booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
-        choice(name: 'MVN',choices: ['clean', 'validate', 'compile', 'verify', 'deploy'],description: 'Maven goals')
+        choice(
+            name: 'MVN',
+            choices: ['clean', 'validate', 'compile', 'verify', 'deploy'],
+            description: 'Maven goals'
+        )
     }
-stage('Checkout step1') {
+    stages {
+        stage('Parallel stage') {
+            parallel {
+
+                stage('Checkout step1') {
                     steps {
                         withCredentials([
                             usernamePassword(
                                 credentialsId: 'c7bd912f-283a-42e1-87eb-9af2c4260087',
-                                usernameVariable: 'Priya',
-                                passwordVariable: 'git_pwd'
-                            )
+                                usernameVariable: 'GIT_USER',
+                                passwordVariable: 'GIT_PWD')
                         ]) {
                             sh '''
                                 echo "Checkout completed step1"
-                                echo "Using credential 1 "
-                                echo "User: $Priya"
+                                echo "Using credential 1"
+                                echo "User: $GIT_USER"
                             '''
                         }
                     }
@@ -27,14 +35,13 @@ stage('Checkout step1') {
                         withCredentials([
                             usernamePassword(
                                 credentialsId: 'priya_ID',
-                                usernameVariable: 'priyadarshini',
-                                passwordVariable: 'jenkin_pwd'
-                            )
+                                usernameVariable: 'JENKINS_USER',
+                                passwordVariable: 'JENKINS_PWD')
                         ]) {
                             sh '''
                                 echo "Environment completed step2"
-                                echo "Using Credential 2"
-                                echo "User: $priyadarshini"
+                                echo "Using credential 2"
+                                echo "User: $JENKINS_USER"
                             '''
                         }
                     }
