@@ -15,9 +15,7 @@ pipeline {
                 }
                 stage('Environment Info step2') {
                     steps {
-                        sh '''
 							sh 'echo "Environment completed step2 "'
-                        '''
                     }
                 }
             }
