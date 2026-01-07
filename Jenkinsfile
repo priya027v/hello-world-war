@@ -2,26 +2,72 @@ pipeline {
     agent { label 'slave1' }
     parameters {
         string(name: 'env', defaultValue: 'dev', description: 'Target Environment')
-        booleanParam(name: 'RUN_TESTS', defaultValue: false, description: 'Run tests?')
+        booleanParam(name: 'RUN_TESTS', defaultValue: 'true', description: 'Run tests?')
         choice(name: 'MVN',choices: ['clean', 'validate', 'compile', 'verify', 'deploy'],description: 'Maven goals')
     }
-    stages {
-        stage('Parallel stage') {
-            parallel {
-                stage('Checkout step1') {
+stage('Checkout step1') {
                     steps {
-                    sh 'echo "Checkout completed step1"'
+                        withCredentials([
+                            usernamePassword(
+                                credentialsId: 'c7bd912f-283a-42e1-87eb-9af2c4260087',
+                                usernameVariable: 'Priya',
+                                passwordVariable: 'git_pwd'
+                            )
+                        ]) {
+                            sh '''
+                                echo "Checkout completed step1"
+                                echo "Using credential 1 "
+                                echo "User: $Priya"
+                            '''
+                        }
                     }
                 }
                 stage('Environment Info step2') {
                     steps {
-							sh 'echo "Environment completed step2 "'
+                        withCredentials([
+                            usernamePassword(
+                                credentialsId: 'priya_ID',
+                                usernameVariable: 'priyadarshini',
+                                passwordVariable: 'jenkin_pwd'
+                            )
+                        ]) {
+                            sh '''
+                                echo "Environment completed step2"
+                                echo "Using Credential 2"
+                                echo "User: $priyadarshini"
+                            '''
+                        }
                     }
                 }
             }
         }
     }
 }
+
+// pipeline {
+//     agent { label 'slave1' }
+//     parameters {
+//         string(name: 'env', defaultValue: 'dev', description: 'Target Environment')
+//         booleanParam(name: 'RUN_TESTS', defaultValue: false, description: 'Run tests?')
+//         choice(name: 'MVN',choices: ['clean', 'validate', 'compile', 'verify', 'deploy'],description: 'Maven goals')
+//     }
+//     stages {
+//         stage('Parallel stage') {
+//             parallel {
+//                 stage('Checkout step1') {
+//                     steps {
+//                     sh 'echo "Checkout completed step1"'
+//                     }
+//                 }
+//                 stage('Environment Info step2') {
+//                     steps {
+// 							sh 'echo "Environment completed step2 "'
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
 
