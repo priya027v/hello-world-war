@@ -30,13 +30,14 @@ pipeline {
                     usernamePassword(
                         credentialsId: 'git_id',
                         usernameVariable: 'git',
-                        passwordVariable: 'Password'),
+                        passwordVariable: 'git_pwd'),
                     usernamePassword(
                         credentialsId: 'tomcat_id',
                         usernameVariable: 'tomcat',
                         passwordVariable: 'PASSWORD')
-                ]) {
-                    sh 'echo $git $Password'
+                ]) 
+                {
+                    sh 'echo $git $git_pwd'
                     sh 'echo $tomcat $PASSWORD'
                 }
             }
