@@ -1,19 +1,10 @@
 pipeline {
-    agent {
-        label 'slave1'
-    }
-
+    agent any { label 'slave1' }
     stages {
-        stage('Checkout') {
+        stage('checkout') {
             steps {
-                checkout scm
+                sh 'git clone https://github.com/priya027v/hello-world-war'
             }
         }
-
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-    }
+     }
 }
