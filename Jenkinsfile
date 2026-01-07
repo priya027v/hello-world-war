@@ -28,15 +28,15 @@ pipeline {
             steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'priya_ID',
-                        usernameVariable: 'priyadarshini',
+                        credentialsId: 'git_id',
+                        usernameVariable: 'git',
                         passwordVariable: 'Password'),
                     usernamePassword(
                         credentialsId: 'tomcat_id',
                         usernameVariable: 'tomcat',
                         passwordVariable: 'PASSWORD')
                 ]) {
-                    sh 'echo $priyadarshini $Password'
+                    sh 'echo $git $Password'
                     sh 'echo $tomcat $PASSWORD'
                 }
             }
