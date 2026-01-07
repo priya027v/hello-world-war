@@ -10,8 +10,7 @@ pipeline {
             parallel {
                 stage('Checkout step1') {
                     steps {
-                        git 'https://github.com/priya027v/hello-world-war.git'
-                        sh 'echo "Checkout completed step1"'
+                    sh 'echo "Checkout completed step1"'
                     }
                 }
                 stage('Environment Info step2') {
