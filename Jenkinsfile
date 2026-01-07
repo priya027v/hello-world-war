@@ -3,8 +3,8 @@ pipeline {
 
     parameters {
         string(name: 'CMD', defaultValue: 'cd', description: 'Command used to run or build application')
-        booleanParam(name: 'RUN_TESTS', defaultValue: false, description: 'Run tests?')
-        choice(name: 'CMD1', choices: ['Clean', 'validate', 'compile'], description: 'test package deploy')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
+        choice(name: 'CMD1', choices: ['Clean', 'validate', 'compile', 'package','deploy', 'test'], description: 'test package deploy')
     }
 
     stages {
