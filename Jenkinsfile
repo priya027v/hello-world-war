@@ -16,7 +16,6 @@ pipeline {
                 stage('Environment Info step2') {
                     steps {
                         sh '''
-					 		sh 'echo $evn $RUN_TESTS $MVN'
 							sh 'echo "Environment completed step2 "'
                         '''
                     }
