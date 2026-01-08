@@ -1,7 +1,7 @@
 @Library('my_library@main') _  // Correct syntax
 
 pipeline {
-    agent { label 'slave' }
+    agent { label 'slave1' }
 
 
     stages {
