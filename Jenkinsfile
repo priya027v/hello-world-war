@@ -2,12 +2,22 @@
 
 pipeline {
     agent { label 'slave1' }
-
-
     stages {
         stage('Checkout Code') {
             steps {
-                checkoutCode()
+                script {
+                     pipelinecode.checkoutcode()
+                }
+            }
+        }
+        stage('Setup Maven') {
+            steps {
+                setupmaven()
+            }
+        }
+        stage('Build App') {
+            steps {
+                buildapp('package')
             }
         }
     }
