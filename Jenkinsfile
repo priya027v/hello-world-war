@@ -1,20 +1,23 @@
-@Library('my_library@main') _  // Correct syntax
+@Library('my_library@main') _
 
 pipeline {
     agent { label 'slave1' }
+
     stages {
         stage('Checkout Code') {
             steps {
                 script {
-                     pipelinecode.checkoutcode()
+                    pipelinecode.checkoutcode()
                 }
             }
         }
+
         stage('Setup Maven') {
             steps {
                 setupmaven()
             }
         }
+
         stage('Build App') {
             steps {
                 buildapp('package')
