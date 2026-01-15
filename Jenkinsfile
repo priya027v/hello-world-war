@@ -26,12 +26,12 @@ pipeline {
                     echo "Deploying WAR to Tomcat"
 
                     # Copy WAR file to Tomcat webapps
-                    sudo cp hello-world-war/target/*.war /opt/tomcat/webapps/
+                      cp hello-world-war/target/*.war /opt/tomcat/webapps/
 
                     # Restart Tomcat
-                    sudo /opt/tomcat/bin/shutdown.sh || true
+                      /opt/tomcat/bin/shutdown.sh || true
                     sleep 5
-                    sudo /opt/tomcat/bin/startup.sh
+                    /opt/tomcat/bin/startup.sh
 
                     echo "Deployment completed"
                 '''
