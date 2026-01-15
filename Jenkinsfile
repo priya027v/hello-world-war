@@ -20,20 +20,14 @@ pipeline {
                 '''
             }
         }
-           stage('Deploy') {
+        stage('Deploy') {
             steps {
-                  sh '''
-                    echo "Deploying WAR to Tomcat"
+                sh '''
+                  cp hello-world-war/target/*.war /opt/tomcat/webapps/
 
-                    # Copy WAR file to Tomcat webapps
-                      cp hello-world-war/target/*.war /opt/tomcat/webapps/
-
-                    # Restart Tomcat
-                      /opt/tomcat/bin/shutdown.sh || true
-                    sleep 5
-                    /opt/tomcat/bin/startup.sh
-
-                    echo "Deployment completed"
+                  /opt/tomcat/bin/shutdown.sh || true
+                  sleep 5
+                  /opt/tomcat/bin/startup.sh
                 '''
             }
         }
