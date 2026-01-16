@@ -22,6 +22,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                withCredentials([usernamePassword(
+            credentialsId: 'jfrog',
+            usernameVariable: 'JFROG_USER',
+            passwordVariable: 'JFROG_API_KEY'
+        )])
                 sh '''
                   cp hello-world-war/target/*.war /opt/tomcat/webapps/
 
