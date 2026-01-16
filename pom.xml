@@ -9,12 +9,12 @@
 
 	<distributionManagement>
     <repository>
-        <id>artifactory-releases</id>
+        <id>jfrog</id>
         <url>http://13.60.214.140:8081/artifactory/libs-release-local</url>
     </repository>
 
     <snapshotRepository>
-        <id>artifactory-snapshots</id>
+        <id>jfrog</id>
         <url>http://13.60.214.140:8081/artifactorylibs-snapshot-local</url>
     </snapshotRepository>
 </distributionManagement>
