@@ -6,6 +6,19 @@
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>Hello World Web Application Repository</name>
+
+	<distributionManagement>
+    <repository>
+        <id>artifactory-releases</id>
+        <url>http://13.60.214.140:8081/artifactory/libs-release-local</url>
+    </repository>
+
+    <snapshotRepository>
+        <id>artifactory-snapshots</id>
+        <url>http://13.60.214.140:8081/artifactorylibs-snapshot-local</url>
+    </snapshotRepository>
+</distributionManagement>
+	
 	<description>Simplest possible Java Webapp</description>
 
 	<build>
