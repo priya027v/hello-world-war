@@ -23,6 +23,11 @@ pipeline {
 
         stage('Deploy to JFrog') {
             steps {
+            withCredentials([usernamePassword(
+            credentialsId: 'jfrog',
+            usernameVariable: 'JFROG_USER',
+            passwordVariable: 'JFROG_API_KEY'
+        )])
                 sh '''
                   cd hello-world-war
                   mvn deploy
