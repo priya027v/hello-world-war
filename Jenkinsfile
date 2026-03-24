@@ -16,7 +16,8 @@ pipeline {
             steps {
                 sh '''
                   cd hello-world-war
-                  mvn clean package
+                  //mvn clean package
+                  docker build -t hello-war:1.0 
                 '''
             }
         }
