@@ -5,41 +5,116 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                sh '''
-                  rm -rf *
-                  git clone https://github.com/priya027v/hello-world-war
-                '''
+                git url: 'https://github.com/priya027v/hello-world-war.git'
             }
         }
 
         stage('Build') {
             steps {
                 sh '''
-                  cd hello-world-war
-                  //mvn clean package
-                  docker build -t hello-war:1.0 
+                  mvn clean package
+                  docker build -t hello-war:1.0 .
                 '''
             }
         }
 
         stage('Deploy to JFrog') {
-        steps {
-        withCredentials([
-            usernamePassword(
-                credentialsId: 'jfrog',
-                usernameVariable: 'JFROG_USER',
-                passwordVariable: 'JFROG_PASS'
-            )
-        ]) {
-                sh '''
-                  cd hello-world-war
-                  mvn deploy
-                '''
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'jfrog',
+                        usernameVariable: 'JFROG_USER',
+                        passwordVariable: 'JFROG_PASS'
+                    )
+                ]) {
+                    sh '''
+                      mvn deploy
+                    '''
+                }
             }
         }
     }
-  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// pipeline {
+//     agent { label 'slave1' }
+
+//     stages {
+
+//         stage('Checkout') {
+//             steps {
+//                 sh '''
+//                   rm -rf *
+//                   git clone https://github.com/priya027v/hello-world-war
+//                 '''
+//             }
+//         }
+
+//         stage('Build') {
+//             steps {
+//                 sh '''
+//                   cd hello-world-war
+//                   //mvn clean package
+//                   docker build -t hello-war:1.0 
+//                 '''
+//             }
+//         }
+
+//         stage('Deploy to JFrog') {
+//         steps {
+//         withCredentials([
+//             usernamePassword(
+//                 credentialsId: 'jfrog',
+//                 usernameVariable: 'JFROG_USER',
+//                 passwordVariable: 'JFROG_PASS'
+//             )
+//         ]) {
+//                 sh '''
+//                   cd hello-world-war
+//                   mvn deploy
+//                 '''
+//             }
+//         }
+//     }
+//   }
+// }
 
 
 
